@@ -19,6 +19,8 @@ export const goods = [
 export const App = () => {
   const [good, setGood] = useState('Jam');
 
+  const reset = () => setGood('');
+
   return (
     <main className="section container">
       {good === '' ? (
@@ -32,9 +34,7 @@ export const App = () => {
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
-            onClick={() => {
-              setGood('');
-            }}
+            onClick={reset}
           />
         </h1>
       )}
@@ -43,6 +43,7 @@ export const App = () => {
         <tbody>
           {goods.map(goo => (
             <tr
+              key={goo}
               data-cy="Good"
               className={cn({ 'has-background-success-light': goo === good })}
             >
@@ -52,9 +53,7 @@ export const App = () => {
                     data-cy="RemoveButton"
                     type="button"
                     className="button is-info"
-                    onClick={() => {
-                      setGood('');
-                    }}
+                    onClick={reset}
                   >
                     -
                   </button>
